@@ -1,38 +1,79 @@
-.App {
+.page{
+  margin:20px;
+}
+
+.interactions{
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.table{
+  margin:20px
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.table-header {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+  line-height: 24px;
+  font-size: 16px;
+  padding: 0 10px;
+  justify-content: space-between;
   }
-  to {
-    transform: rotate(360deg);
+  .table-empty {
+  margin: 200px;
+  text-align: center;
+  font-size: 16px;
   }
-}
+
+  .table-row {
+    display: flex;
+    line-height: 24px;
+    white-space: nowrap;
+    margin: 10px 0;
+    padding: 10px;
+    background: #ffffff;
+    border: 1px solid #e3e3e3;
+    }
+    .table-header > span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 0 5px;
+    }
+    .table-row > span {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      padding: 0 5px;
+      }
+    .button-inline {
+      border-width: 0;
+     /* background: rgb(42, 157, 202);*/
+     background:rgb(211, 31, 31);
+      color:seashell;
+      text-align: inherit;
+      -webkit-font-smoothing: inherit;
+      padding: 10;
+      font-size: inherit;
+      cursor: pointer;
+    }
+    .button-active {
+      border-radius: 0;
+      border-bottom: 1.5px solid rgb(211, 31, 31);
+      }
+    .button:hover{
+      color:#38BB6C
+    }
+    .sub{
+      background: rgb(42, 157, 202);
+      color: seashell; 
+    }
+    .More{
+      background:rgb(42, 157, 202) ;
+      color: seashell;
+   
+      font-size: medium;
+      padding:10px
+    }
+    .button-table-header{
+      background:rgb(111, 190, 32);
+      color: seashell;
+      padding:10px;
+    }
+
+  
