@@ -1,10 +1,9 @@
 import React from 'react';
 import './App.css';
-import { faSpinner } from '@fortawesome/free-solid-svg-icons'; 
-import {faSortUp} from '@fortawesome/free-solid-svg-icons'; 
-import {faSortDown} from '@fortawesome/free-solid-svg-icons'; 
+import { faSpinner } from '@fortawesome/free-solid-svg-icons';  
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {sortBy} from 'lodash';
+
 const DEFAULT_QUERY='redux';
 const PATH_BASE='https://hn.algolia.com/api/v1';
 const PATH_SEARCH='/search';
@@ -225,16 +224,6 @@ const Button=({onClick,className='',children})=>{
     )
   }
 
-  const BuTton=({onClick,className='',children})=>{
- 
-    return(
-      <button
-      type="button"
-    onClick={onClick}
-    className={className}>{children}</button>
-    )
-  }
-
   const Loading=()=>
   <div style={{textAlign:"center"}}>
     <FontAwesomeIcon icon={faSpinner} /> 
@@ -251,16 +240,15 @@ const Sort=({onSort,sortKey,children,activateSortKey,isSortReverse})=>{
   const asc="  asc";
   const dsc="  dsc";
   if(sortKey===activateSortKey){
-    sortClass.push(`button-active`);
     isSortReverse?sortClass.push(asc):sortClass.push(dsc)
   }
 
   return(
     
   isSortReverse? 
-  <BuTton className={sortClass.join(' ')} onClick={()=>onSort(sortKey)}>{children}</BuTton>
+  <Button className={sortClass.join(' ')} onClick={()=>onSort(sortKey)}>{children}</Button>
   :
-<BuTton className={sortClass.join(' ')} onClick={()=>onSort(sortKey)}>{children}</BuTton>
+<Button className={sortClass.join(' ')} onClick={()=>onSort(sortKey)}>{children}</Button>
 )}
 
 
