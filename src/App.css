@@ -71,9 +71,20 @@
       padding:10px
     }
     .button-table-header{
-      background:rgb(111, 190, 32);
-      color: seashell;
+     /* background:rgb(111, 190, 32);*/
+     background:inherit;
+      color: black;
       padding:10px;
+      position:relative;
     }
-
-  
+    .asc::after{
+      content: "▲";
+      font-weight: 100;
+      color:rgb(211, 31, 31);
+    }
+    .dsc::after{
+      content:"▼";
+      font-weight: 100;
+      color: rgb(211, 31, 31);
+    }
+    

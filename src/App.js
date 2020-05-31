@@ -1,6 +1,8 @@
 import React from 'react';
 import './App.css';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'; 
+import {faSortUp} from '@fortawesome/free-solid-svg-icons'; 
+import {faSortDown} from '@fortawesome/free-solid-svg-icons'; 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {sortBy} from 'lodash';
 const DEFAULT_QUERY='redux';
@@ -45,6 +47,7 @@ class App extends React.Component{
    onSort(sortKey){
     const isSortReverse=this.state.sortKey===sortKey&& !this.state.isSortReverse;
      this.setState({sortKey,isSortReverse});
+     return <FontAwesomeIcon icon={faSpinner} /> 
    }
    needsToSearchTopStories(searchTerm){
      return !this.state.results[searchTerm]//this way of using objects is called computed properties
@@ -171,18 +174,22 @@ return(
     <div className="table-headers">
       <span style={{width:'40%'}}>
         <Sort sortKey='TITLE'
+        isSortReverse={isSortReverse}
         activateSortKey={sortKey}
         onSort={onSort}>Title</Sort>
       </span>  <span style={{width:'30%'}}>
         <Sort sortKey='AUTHOR'
         activateSortKey={sortKey}
+        isSortReverse={isSortReverse}
         onSort={onSort}>Author</Sort>
       </span> <span style={{width:'10%'}}>
         <Sort sortKey='COMMENTS'
+        isSortReverse={isSortReverse}
         activateSortKey={sortKey}
         onSort={onSort}>Comments</Sort>
       </span>  <span style={{width:'10%'}}>
         <Sort sortKey='POINTS'
+        isSortReverse={isSortReverse}
         activateSortKey={sortKey}
         onSort={onSort}>Points</Sort>
       </span>
@@ -218,24 +225,48 @@ const Button=({onClick,className='',children})=>{
     )
   }
 
+  const BuTton=({onClick,className='',children})=>{
+ 
+    return(
+      <button
+      type="button"
+    onClick={onClick}
+    className={className}>{children}</button>
+    )
+  }
+
   const Loading=()=>
   <div style={{textAlign:"center"}}>
     <FontAwesomeIcon icon={faSpinner} /> 
   </div>
 
-const withLoading=(Component)=>({isLoading,...rest})=>isLoading?<Loading/>: <Component {...rest}/>
+
+const withLoading=(Component)=>({isLoading,...rest})=>isLoading?<Loading/>: <Component {...rest}/>//higher order func
 
 const ButtonWithLoading=withLoading(Button);
 
-const Sort=({onSort,sortKey,children,activateSortKey})=>{
+const Sort=({onSort,sortKey,children,activateSortKey,isSortReverse})=>{
+  console.log({onSort})
   const sortClass=["button-table-header"];
+  const asc="  asc";
+  const dsc="  dsc";
   if(sortKey===activateSortKey){
-    sortClass.push('button-active');
+    sortClass.push(`button-active`);
+    isSortReverse?sortClass.push(asc):sortClass.push(dsc)
   }
+
   return(
-<Button className={sortClass.join(' ')} onClick={()=>onSort(sortKey)}>{children}</Button>//join class to inherit button-active css property along with the original class css property
-  )}
+    
+  isSortReverse? 
+  <BuTton className={sortClass.join(' ')} onClick={()=>onSort(sortKey)}>{children}</BuTton>
+  :
+<BuTton className={sortClass.join(' ')} onClick={()=>onSort(sortKey)}>{children}</BuTton>
+)}
+
+
+
 export default App;
+
 export{
   Search,
   Table,
